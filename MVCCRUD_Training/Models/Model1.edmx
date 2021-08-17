@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WPGSMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MstAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccessID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AnswerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AnswerValue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FormTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MstEmployee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccessID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrgId" Type="int" Nullable="false" />
+          <Property Name="EmpTypeId" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FullName" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="Zip" Type="varchar" MaxLength="20" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="20" />
+          <Property Name="CellPhone" Type="varchar" MaxLength="20" />
+          <Property Name="VerifiedCellPhone" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="HomeLocationID" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="TitleID" Type="int" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ManagerID" Type="int" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="NotificationOverride" Type="bit" Nullable="false" />
+          <Property Name="AppOverride" Type="bit" Nullable="false" />
+          <Property Name="External" Type="bit" Nullable="false" />
+          <Property Name="PinOnly" Type="bit" Nullable="false" />
+          <Property Name="PermissionGroupId" Type="int" />
+          <Property Name="EmpImageId" Type="int" />
+          <Property Name="PinNumber" Type="varchar" MaxLength="256" />
+          <Property Name="QRCode" Type="varchar" MaxLength="50" />
+          <Property Name="Signature" Type="nvarchar" MaxLength="500" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="DateofJoining" Type="date" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="LinkedEmpId" Type="varchar" MaxLength="20" />
+          <Property Name="Settings" Type="nvarchar(max)" />
+          <Property Name="Created" Type="datetime2" Precision="0" />
+        </EntityType>
+        <Association Name="FK_MstEmployee_MstEmployee_ManagerID">
+          <End Role="MstEmployee" Type="Self.MstEmployee" Multiplicity="0..1" />
+          <End Role="MstEmployee1" Type="Self.MstEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MstEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MstEmployee1">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WPGSMModelStoreContainer">
+          <EntitySet Name="MstAnswer" EntityType="Self.MstAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MstEmployee" EntityType="Self.MstEmployee" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MstEmployee_MstEmployee_ManagerID" Association="Self.FK_MstEmployee_MstEmployee_ManagerID">
+            <End Role="MstEmployee" EntitySet="MstEmployee" />
+            <End Role="MstEmployee1" EntitySet="MstEmployee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WPGSMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MstEmployee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccessID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrgId" Type="Int32" Nullable="false" />
+          <Property Name="EmpTypeId" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HomePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VerifiedCellPhone" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HomeLocationID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TitleID" Type="Int32" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="NotificationOverride" Type="Boolean" Nullable="false" />
+          <Property Name="AppOverride" Type="Boolean" Nullable="false" />
+          <Property Name="External" Type="Boolean" Nullable="false" />
+          <Property Name="PinOnly" Type="Boolean" Nullable="false" />
+          <Property Name="PermissionGroupId" Type="Int32" />
+          <Property Name="EmpImageId" Type="Int32" />
+          <Property Name="PinNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="QRCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Signature" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="DateofJoining" Type="DateTime" Precision="0" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="LinkedEmpId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MstEmployee1" Relationship="Self.FK_MstEmployee_MstEmployee_ManagerID" FromRole="MstEmployee" ToRole="MstEmployee1" />
+          <NavigationProperty Name="MstEmployee2" Relationship="Self.FK_MstEmployee_MstEmployee_ManagerID" FromRole="MstEmployee1" ToRole="MstEmployee" />
+        </EntityType>
+        <Association Name="FK_MstEmployee_MstEmployee_ManagerID">
+          <End Role="MstEmployee" Type="Self.MstEmployee" Multiplicity="0..1" />
+          <End Role="MstEmployee1" Type="Self.MstEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MstEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MstEmployee1">
+              <PropertyRef Name="ManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WPGSMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MstEmployees" EntityType="Self.MstEmployee" />
+          <AssociationSet Name="FK_MstEmployee_MstEmployee_ManagerID" Association="Self.FK_MstEmployee_MstEmployee_ManagerID">
+            <End Role="MstEmployee" EntitySet="MstEmployees" />
+            <End Role="MstEmployee1" EntitySet="MstEmployees" />
+          </AssociationSet>
+          <EntitySet Name="MstAnswers" EntityType="WPGSMModel.MstAnswer" />
+        </EntityContainer>
+        <EntityType Name="MstAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccessID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AnswerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AnswerValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FormTypeId" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WPGSMModelStoreContainer" CdmEntityContainer="WPGSMEntities">
+          <EntitySetMapping Name="MstEmployees">
+            <EntityTypeMapping TypeName="WPGSMModel.MstEmployee">
+              <MappingFragment StoreEntitySet="MstEmployee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccessID" ColumnName="AccessID" />
+                <ScalarProperty Name="OrgId" ColumnName="OrgId" />
+                <ScalarProperty Name="EmpTypeId" ColumnName="EmpTypeId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="VerifiedCellPhone" ColumnName="VerifiedCellPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HomeLocationID" ColumnName="HomeLocationID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NotificationOverride" ColumnName="NotificationOverride" />
+                <ScalarProperty Name="AppOverride" ColumnName="AppOverride" />
+                <ScalarProperty Name="External" ColumnName="External" />
+                <ScalarProperty Name="PinOnly" ColumnName="PinOnly" />
+                <ScalarProperty Name="PermissionGroupId" ColumnName="PermissionGroupId" />
+                <ScalarProperty Name="EmpImageId" ColumnName="EmpImageId" />
+                <ScalarProperty Name="PinNumber" ColumnName="PinNumber" />
+                <ScalarProperty Name="QRCode" ColumnName="QRCode" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="DateofJoining" ColumnName="DateofJoining" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="LinkedEmpId" ColumnName="LinkedEmpId" />
+                <ScalarProperty Name="Settings" ColumnName="Settings" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MstAnswers">
+            <EntityTypeMapping TypeName="WPGSMModel.MstAnswer">
+              <MappingFragment StoreEntitySet="MstAnswer">
+                <ScalarProperty Name="FormTypeId" ColumnName="FormTypeId" />
+                <ScalarProperty Name="AnswerValue" ColumnName="AnswerValue" />
+                <ScalarProperty Name="AnswerName" ColumnName="AnswerName" />
+                <ScalarProperty Name="AccessID" ColumnName="AccessID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
